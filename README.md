@@ -73,4 +73,4 @@ ElasticRangePicker(
 
 ## 
 **Made with :heart: for Flutter community** - 
-**Pull requests are welcome** :collision::sparkles:
+**Pull requests are welcome** :sparkles:
