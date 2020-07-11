@@ -22,27 +22,27 @@ dependencies:
 ## Usage
 
  ### Seek bar:
- ```dart
- ElasticSeekBar(  
-  valueListener: (value) {  
-    print("slider value: $value");  
-  },  
-  size: Size(300, 100),  
-  stretchRange: 50.0,  
-  minValue: 0,  
-  maxValue: 100,  
-  circleRadius: 12,  
-  thinLineStrokeWidth: 3,  
-  thickLineStrokeWidth: 4,  
-  thickLineColor: Colors.blue,  
-  thinLineColor: Colors.blueGrey,  
-  bounceDuration: Duration(seconds: 1),  
-  stiffness: 300,  
-  dampingRatio: 5,  
-),
+ ```
+     ElasticSeekBar(  
+      valueListener: (value) {  
+        print("slider value: $value");  
+      },  
+      size: Size(300, 100),  
+      stretchRange: 50.0,  
+      minValue: 0,  
+      maxValue: 100,  
+      circleRadius: 12,  
+      thinLineStrokeWidth: 3,  
+      thickLineStrokeWidth: 4,  
+      thickLineColor: Colors.blue,  
+      thinLineColor: Colors.blueGrey,  
+      bounceDuration: Duration(seconds: 1),  
+      stiffness: 300,  
+      dampingRatio: 5,  
+    ),
  ```
   ### Range picker:
- ```dart
+ ```
 ElasticRangePicker(  
   valueListener: (firstValue, secondValue) {  
     print("range picker first value: $firstValue");  
@@ -73,4 +73,4 @@ ElasticRangePicker(
 
 ## 
 **Made with :heart: for Flutter community**
-**do not forget to contribute** :collision::sparkles:
+**Pull requests are welcome** :collision::sparkles:
