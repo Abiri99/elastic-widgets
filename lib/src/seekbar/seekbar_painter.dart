@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class SeekBarPainter extends CustomPainter {
-
   double x1;
   double y1;
   double x2;
@@ -58,7 +57,6 @@ class SeekBarPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-
     var mThumbY = thumbY + height / 2;
 
     // Progress line
@@ -76,8 +74,7 @@ class SeekBarPainter extends CustomPainter {
 
     path.moveTo(trackStartX, height / 2);
     path.cubicTo(x1, y1, x2, y2, thumbX - circleRadius, mThumbY);
-    if (thumbX - circleRadius >= trackStartX)
-      canvas.drawPath(path, painter);
+    if (thumbX - circleRadius >= trackStartX) canvas.drawPath(path, painter);
 
     // Default line
     painter = Paint()
@@ -96,8 +93,7 @@ class SeekBarPainter extends CustomPainter {
 
     path.cubicTo(x1, y1, x2, y2, trackEndX, trackY);
 
-    if (thumbX + circleRadius <= trackEndX)
-      canvas.drawPath(path, painter);
+    if (thumbX + circleRadius <= trackEndX) canvas.drawPath(path, painter);
 
     // Circle inside
     painter = Paint()
@@ -105,7 +101,8 @@ class SeekBarPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     path.reset();
-    canvas.drawCircle(Offset(thumbX, mThumbY), circleRadius - thickLineStrokeWidth/2, painter);
+    canvas.drawCircle(Offset(thumbX, mThumbY),
+        circleRadius - thickLineStrokeWidth / 2, painter);
 
     // Circle border
     painter = Paint()
@@ -113,8 +110,7 @@ class SeekBarPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = thickLineStrokeWidth;
 
-    canvas.drawCircle(
-        Offset(thumbX, mThumbY), circleRadius, painter);
+    canvas.drawCircle(Offset(thumbX, mThumbY), circleRadius, painter);
 
     path.reset();
   }

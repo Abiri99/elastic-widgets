@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class RangePickerPainter extends CustomPainter {
-
   double x1;
   double y1;
   double x2;
@@ -47,22 +46,21 @@ class RangePickerPainter extends CustomPainter {
   }
 
   double get trackEndX {
-    return width - circleRadius - thickLineStrokeWidth/2;
+    return width - circleRadius - thickLineStrokeWidth / 2;
   }
 
   double get trackStartX {
-    return circleRadius + thickLineStrokeWidth/2;
+    return circleRadius + thickLineStrokeWidth / 2;
   }
 
   double get trackY {
-    return height/2;
+    return height / 2;
   }
 
   @override
   void paint(Canvas canvas, Size size) {
-
-    var mFirstThumbY = firstThumbY + height/2;
-    var mSecThumbY = secThumbY + height/2;
+    var mFirstThumbY = firstThumbY + height / 2;
+    var mSecThumbY = secThumbY + height / 2;
 
     path.reset();
 
@@ -101,7 +99,7 @@ class RangePickerPainter extends CustomPainter {
     x2 = x1;
     y2 = mFirstThumbY;
 
-    path.moveTo(trackStartX, height/2);
+    path.moveTo(trackStartX, height / 2);
     path.cubicTo(x1, y1, x2, y2, firstThumbX - circleRadius, mFirstThumbY);
     if (firstThumbX - circleRadius >= trackStartX)
       canvas.drawPath(path, defaultPainter);
@@ -124,16 +122,20 @@ class RangePickerPainter extends CustomPainter {
     x1 = (secThumbX + trackEndX) / 2;
     y1 = mSecThumbY;
     x2 = x1;
-    y2 = height/2;
+    y2 = height / 2;
 
     path.cubicTo(x1, y1, x2, y2, trackEndX, trackY);
     if (secThumbX + circleRadius <= trackEndX)
       canvas.drawPath(path, defaultPainter);
 
-    canvas.drawCircle(Offset(firstThumbX, mFirstThumbY), circleRadius, firstCirclePainter);
-    canvas.drawCircle(Offset(firstThumbX, mFirstThumbY), circleRadius - thickLineStrokeWidth/2, firstCircleInsidePainter);
-    canvas.drawCircle(Offset(secThumbX, mSecThumbY), circleRadius, secCirclePainter);
-    canvas.drawCircle(Offset(secThumbX, mSecThumbY), circleRadius - thickLineStrokeWidth/2, secCircleInsidePainter);
+    canvas.drawCircle(
+        Offset(firstThumbX, mFirstThumbY), circleRadius, firstCirclePainter);
+    canvas.drawCircle(Offset(firstThumbX, mFirstThumbY),
+        circleRadius - thickLineStrokeWidth / 2, firstCircleInsidePainter);
+    canvas.drawCircle(
+        Offset(secThumbX, mSecThumbY), circleRadius, secCirclePainter);
+    canvas.drawCircle(Offset(secThumbX, mSecThumbY),
+        circleRadius - thickLineStrokeWidth / 2, secCircleInsidePainter);
 
     path.reset();
   }

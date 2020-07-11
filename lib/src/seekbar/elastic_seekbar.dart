@@ -116,7 +116,7 @@ class _ElasticSeekBarState extends State<ElasticSeekBar>
     if (thumbX <= trackStartX) return widget.minValue.toString();
     if (thumbX >= trackEndX) return widget.maxValue.toString();
     return (((thumbX - trackStartX) / (trackEndX - trackStartX)) *
-        (widget.maxValue - widget.minValue))
+            (widget.maxValue - widget.minValue))
         .toString();
   }
 
@@ -145,22 +145,18 @@ class _ElasticSeekBarState extends State<ElasticSeekBar>
     if (touched) return 0;
     if (gestureDetectorDetails.localPosition.dy >=
 //            trackY -
-        widget.size.height / 2 -
-            widget.circleRadius -
-            widget.thickLineStrokeWidth / 2 &&
+            widget.size.height / 2 -
+                widget.circleRadius -
+                widget.thickLineStrokeWidth / 2 &&
         gestureDetectorDetails.localPosition.dy <=
 //            trackY -
             widget.size.height / 2 +
                 widget.circleRadius +
                 widget.thickLineStrokeWidth / 2 &&
         gestureDetectorDetails.localPosition.dx >=
-            thumbX -
-                widget.circleRadius -
-                widget.thickLineStrokeWidth / 2 &&
+            thumbX - widget.circleRadius - widget.thickLineStrokeWidth / 2 &&
         gestureDetectorDetails.localPosition.dx <=
-            thumbX +
-                widget.circleRadius +
-                widget.thickLineStrokeWidth / 2) {
+            thumbX + widget.circleRadius + widget.thickLineStrokeWidth / 2) {
       return 0;
     }
     return -1;
@@ -186,7 +182,8 @@ class _ElasticSeekBarState extends State<ElasticSeekBar>
           if (node == 0 || touched) {
             touched = true;
             RenderBox box = context.findRenderObject();
-            var touchPoint = box.globalToLocal(dragUpdateDetails.globalPosition);
+            var touchPoint =
+                box.globalToLocal(dragUpdateDetails.globalPosition);
             if (dragUpdateDetails.localPosition.dx <= 0) {
               touchPoint = new Offset(0, 0.0);
             }
@@ -203,17 +200,17 @@ class _ElasticSeekBarState extends State<ElasticSeekBar>
               thumbX = touchPoint.dx.coerceHorizontal(trackStartX, trackEndX);
               thumbY = (touchPoint.dy - widget.size.height / 2)
                   .coerceVertical(
-                  0,
-                  widget.size.height / 2 -
-                      widget.circleRadius -
-                      widget.thickLineStrokeWidth / 2)
+                      0,
+                      widget.size.height / 2 -
+                          widget.circleRadius -
+                          widget.thickLineStrokeWidth / 2)
                   .coerceToStretchRange(
-                  thumbX,
-                  widget.size.height,
-                  widget.size.width,
-                  widget.stretchRange,
-                  trackStartX,
-                  trackEndX);
+                      thumbX,
+                      widget.size.height,
+                      widget.size.width,
+                      widget.stretchRange,
+                      trackStartX,
+                      trackEndX);
             });
             widget.valueListener(getCurrentValue());
           }
