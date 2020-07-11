@@ -6,7 +6,7 @@ import '../util/utils.dart';
 
 // ignore: must_be_immutable
 class ElasticSeekBar extends StatefulWidget {
-  // Notifies parent of the current value
+  // A function passed from parent which notifies itself from the current value of seek bar
   final Function(String value) valueListener;
 
   // Size of seek bar
@@ -39,8 +39,10 @@ class ElasticSeekBar extends StatefulWidget {
   // Speed of bouncing animation
   final Duration bounceDuration;
 
+  // Stiffness of slider while animating
   final double stiffness;
 
+  // Damping ratio of slider while animating
   final double dampingRatio;
 
   ElasticSeekBar({
@@ -220,24 +222,19 @@ class _ElasticSeekBarState extends State<ElasticSeekBar>
           touched = false;
           runAnimation(dragEndDetails.velocity.pixelsPerSecond, widget.size);
         },
-        child: Container(
-          height: widget.size.height,
-          width: widget.size.width,
-          color: Colors.grey,
-          child: CustomPaint(
-            size: Size(widget.size.width, widget.size.height),
-            painter: SeekBarPainter(
-              thumbX: thumbX,
-              thumbY: thumbY,
-              width: widget.size.width,
-              height: widget.size.height,
-              touched: touched,
-              thickLineColor: widget.thickLineColor,
-              thickLineStrokeWidth: widget.thickLineStrokeWidth,
-              thinLineColor: widget.thinLineColor,
-              thinLineStrokeWidth: widget.thinLineStrokeWidth,
-              circleRadius: widget.circleRadius,
-            ),
+        child: CustomPaint(
+          size: Size(widget.size.width, widget.size.height),
+          painter: SeekBarPainter(
+            thumbX: thumbX,
+            thumbY: thumbY,
+            width: widget.size.width,
+            height: widget.size.height,
+            touched: touched,
+            thickLineColor: widget.thickLineColor,
+            thickLineStrokeWidth: widget.thickLineStrokeWidth,
+            thinLineColor: widget.thinLineColor,
+            thinLineStrokeWidth: widget.thinLineStrokeWidth,
+            circleRadius: widget.circleRadius,
           ),
         ),
       ),

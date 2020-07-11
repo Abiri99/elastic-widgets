@@ -32,7 +32,6 @@ class SeekBarPainter extends CustomPainter {
     @required this.thumbY,
     @required this.width,
     @required this.height,
-//    @required this.progress,
     @required this.thickLineStrokeWidth,
     @required this.thinLineStrokeWidth,
     @required this.thickLineColor,

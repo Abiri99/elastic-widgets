@@ -42,7 +42,6 @@ class RangePickerPainter extends CustomPainter {
     this.thickLineColor,
     this.thinLineColor,
   }) {
-//    print("firstnodevertical: $firstNodeVerticalOffset");
     path = Path();
     path.reset();
   }
