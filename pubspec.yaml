@@ -1,6 +1,6 @@
 name: elastic_widgets
 description: Set of Flutter widgets built using physics based animations.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/Abiri99/elastic-widgets
 
 environment:
