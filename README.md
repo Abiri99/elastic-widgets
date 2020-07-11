@@ -22,7 +22,7 @@ dependencies:
 ## Usage
 
  ### Seek bar:
- ```
+ ``` dart
  ElasticSeekBar(  
   valueListener: (value) {  
     print("slider value: $value");  
@@ -42,7 +42,7 @@ dependencies:
 ),
  ```
   ### Range picker:
- ```
+ ``` dart
 ElasticRangePicker(  
   valueListener: (firstValue, secondValue) {  
     print("range picker first value: $firstValue");  
