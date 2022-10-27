@@ -4,12 +4,12 @@ version: 0.0.3
 homepage: https://github.com/Abiri99/elastic-widgets
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  dartx: ^0.4.2
+  dartx: ^1.1.0
 
 dev_dependencies:
   flutter_test:
