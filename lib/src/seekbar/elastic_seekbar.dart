@@ -19,7 +19,7 @@ class ElasticSeekBar extends StatefulWidget {
   final double maxValue;
 
   // How much seek bar stretches in vertical axis
-  double stretchRange;
+  double? stretchRange;
 
   // Thickness of progress line and thumb
   final double thickLineStrokeWidth;
@@ -31,13 +31,13 @@ class ElasticSeekBar extends StatefulWidget {
   final double circleRadius;
 
   // Color of progress line and thumb
-  Color thickLineColor;
+  Color? thickLineColor;
 
   // Color of default line
-  Color thinLineColor;
+  Color? thinLineColor;
 
   // Speed of bouncing animation
-  final Duration bounceDuration;
+  final Duration? bounceDuration;
 
   // Stiffness of slider while animating
   final double stiffness;
@@ -46,9 +46,9 @@ class ElasticSeekBar extends StatefulWidget {
   final double dampingRatio;
 
   ElasticSeekBar({
-    Key key,
-    @required this.valueListener,
-    @required this.size,
+    Key? key,
+    required this.valueListener,
+    required this.size,
     this.stretchRange,
     this.minValue = 0,
     this.maxValue = 100,
@@ -73,20 +73,20 @@ class ElasticSeekBar extends StatefulWidget {
 
 class _ElasticSeekBarState extends State<ElasticSeekBar>
     with SingleTickerProviderStateMixin {
-  double value;
+  double? value;
 
-  double thumbY;
-  double thumbX;
+  double? thumbY;
+  double? thumbX;
 
-  double trackStartX;
-  double trackEndX;
-  double trackY;
+  double? trackStartX;
+  double? trackEndX;
+  double? trackY;
 
-  AnimationController _controller;
+  late AnimationController _controller;
 
-  Animation<double> _animation;
+  late Animation<double> _animation;
 
-  bool touched;
+  bool? touched;
 
   @override
   void initState() {
@@ -113,9 +113,9 @@ class _ElasticSeekBarState extends State<ElasticSeekBar>
   }
 
   String getCurrentValue() {
-    if (thumbX <= trackStartX) return widget.minValue.toString();
-    if (thumbX >= trackEndX) return widget.maxValue.toString();
-    return (((thumbX - trackStartX) / (trackEndX - trackStartX)) *
+    if (thumbX! <= trackStartX!) return widget.minValue.toString();
+    if (thumbX! >= trackEndX!) return widget.maxValue.toString();
+    return (((thumbX! - trackStartX!) / (trackEndX! - trackStartX!)) *
             (widget.maxValue - widget.minValue))
         .toString();
   }
@@ -142,7 +142,7 @@ class _ElasticSeekBarState extends State<ElasticSeekBar>
   }
 
   int detectNode(var gestureDetectorDetails) {
-    if (touched) return 0;
+    if (touched!) return 0;
     if (gestureDetectorDetails.localPosition.dy >=
 //            trackY -
             widget.size.height / 2 -
@@ -154,9 +154,9 @@ class _ElasticSeekBarState extends State<ElasticSeekBar>
                 widget.circleRadius +
                 widget.thickLineStrokeWidth / 2 &&
         gestureDetectorDetails.localPosition.dx >=
-            thumbX - widget.circleRadius - widget.thickLineStrokeWidth / 2 &&
+            thumbX! - widget.circleRadius - widget.thickLineStrokeWidth / 2 &&
         gestureDetectorDetails.localPosition.dx <=
-            thumbX + widget.circleRadius + widget.thickLineStrokeWidth / 2) {
+            thumbX! + widget.circleRadius + widget.thickLineStrokeWidth / 2) {
       return 0;
     }
     return -1;
@@ -179,22 +179,22 @@ class _ElasticSeekBarState extends State<ElasticSeekBar>
         },
         onPanUpdate: (DragUpdateDetails dragUpdateDetails) {
           var node = detectNode(dragUpdateDetails);
-          if (node == 0 || touched) {
+          if (node == 0 || touched!) {
             touched = true;
-            RenderBox box = context.findRenderObject();
+            RenderBox box = context.findRenderObject() as RenderBox;
             var touchPoint =
                 box.globalToLocal(dragUpdateDetails.globalPosition);
             if (dragUpdateDetails.localPosition.dx <= 0) {
               touchPoint = new Offset(0, 0.0);
             }
-            if (touchPoint.dx >= context.size.width) {
-              touchPoint = new Offset(context.size.width, 0);
+            if (touchPoint.dx >= context.size!.width) {
+              touchPoint = new Offset(context.size!.width, 0);
             }
             if (touchPoint.dy <= 0) {
               touchPoint = new Offset(touchPoint.dx, 0.0);
             }
-            if (touchPoint.dy >= context.size.height) {
-              touchPoint = new Offset(touchPoint.dx, context.size.height);
+            if (touchPoint.dy >= context.size!.height) {
+              touchPoint = new Offset(touchPoint.dx, context.size!.height);
             }
             setState(() {
               thumbX = touchPoint.dx.coerceHorizontal(trackStartX, trackEndX);
